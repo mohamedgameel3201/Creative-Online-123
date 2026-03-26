@@ -4,6 +4,8 @@ workflows:
 
     environment:
       flutter: 3.27.2
+      vars:
+        GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx6g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8"
 
     scripts:
       - flutter --version

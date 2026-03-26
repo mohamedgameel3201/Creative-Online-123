@@ -1,0 +1,59 @@
+import 'dart:convert';
+
+import 'package:http/http.dart';
+import 'package:webinar/common/components.dart';
+import 'package:webinar/common/enums/error_enum.dart';
+import 'package:webinar/common/utils/app_text.dart';
+import 'package:webinar/common/utils/constants.dart';
+import 'package:webinar/common/utils/error_handler.dart';
+import 'package:webinar/common/utils/http_handler.dart';
+
+class CourseCodeService {
+  /// Redeem access code for a course
+  /// POST /courses/{courseId}/access-code
+  static Future<Map<String, dynamic>> redeem({
+    required int courseId,
+    required String code,
+  }) async {
+    try {
+      // ✅ OPTION A: لو Constants.baseUrl فيها /api/development/ بالفعل
+      final String url = '${Constants.baseUrl}courses/$courseId/access-code';
+
+      // ✅ OPTION B: لو Constants.baseUrl فيها /api/ فقط (ساعتها فعّل السطر ده بدل اللي فوق)
+      // final String url = '${Constants.baseUrl}development/courses/$courseId/access-code';
+
+      Response res = await httpPostWithToken(
+        url,
+        {"code": code.trim()},
+        isRedirectingStatusCode: false,
+      );
+
+      final jsonResponse = jsonDecode(res.body);
+
+      // Rocket LMS عادة بيرجع success=true
+      if (jsonResponse is Map && jsonResponse['success'] == true) {
+        return {
+          "success": true,
+          "message": (jsonResponse['message'] ?? '').toString(),
+          "data": jsonResponse['data'],
+        };
+      }
+
+      // لو بيرجع validation errors
+      ErrorHandler().showError(ErrorEnum.error, jsonResponse, readMessage: true);
+
+      return {
+        "success": false,
+        "message": (jsonResponse is Map && jsonResponse['message'] != null)
+            ? jsonResponse['message'].toString()
+            : appText.invalidAccessCode,
+      };
+    } catch (_) {
+      showSnackBar(ErrorEnum.error, appText.somethingWentWrong);
+      return {
+        "success": false,
+        "message": appText.somethingWentWrong,
+      };
+    }
+  }
+}

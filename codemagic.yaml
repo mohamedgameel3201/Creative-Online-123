@@ -1,0 +1,10 @@
+workflows:
+  default-workflow:
+    name: Default Workflow
+
+    environment:
+      flutter: 3.27.2
+
+    scripts:
+      - flutter pub get
+      - flutter build apk --release

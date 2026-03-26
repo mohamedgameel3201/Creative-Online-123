@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1047755220854",
+    "project_id": "igcorner-13421",
+    "storage_bucket": "igcorner-13421.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047755220854:android:2617019202ec13db22bc57",
+        "android_client_info": {
+          "package_name": "com.creativeonline.igcorner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXezAGtAb8PoECf3yFXfXNCabWI0qGGs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047755220854:android:b81abe65336f24ae22bc57",
+        "android_client_info": {
+          "package_name": "com.igcorner.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXezAGtAb8PoECf3yFXfXNCabWI0qGGs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

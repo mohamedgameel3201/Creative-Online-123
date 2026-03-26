@@ -185,7 +185,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: false,
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
               scaffoldBackgroundColor: backgroundColor,
-              dialogTheme: DialogTheme(
+              dialogTheme: DialogThemeData(
                 backgroundColor: backgroundColor,
               ),
             ),
